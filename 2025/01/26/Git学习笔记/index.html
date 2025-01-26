@@ -1,0 +1,290 @@
+<!DOCTYPE html><html lang="语言（可以填写zh-CN）" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Git学习笔记 | 玉米的学习博客</title><meta name="author" content="站主"><meta name="copyright" content="站主"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1. 基本流程 git clone address把github上的代码clone到本地文件夹下–&gt;git add .放到暂存区–&gt;git commit -m”备注信息”提交记录–&gt;git push(分支)  2. 基本命令 git add files 把当前文件放入暂存区域。git commit 给暂存区域生成快照并提交。git reset -- files 用来撤销最后一次g">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git学习笔记">
+<meta property="og:url" content="http://example.com/2025/01/26/Git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="玉米的学习博客">
+<meta property="og:description" content="1. 基本流程 git clone address把github上的代码clone到本地文件夹下–&gt;git add .放到暂存区–&gt;git commit -m”备注信息”提交记录–&gt;git push(分支)  2. 基本命令 git add files 把当前文件放入暂存区域。git commit 给暂存区域生成快照并提交。git reset -- files 用来撤销最后一次g">
+<meta property="og:locale">
+<meta property="og:image" content="http://example.com/img/butterfly-icon.png">
+<meta property="article:published_time" content="2025-01-26T15:58:52.169Z">
+<meta property="article:modified_time" content="2025-01-26T16:03:07.119Z">
+<meta property="article:author" content="站主">
+<meta property="article:tag" content="关键词">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Git学习笔记",
+  "url": "http://example.com/2025/01/26/Git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/",
+  "image": "http://example.com/img/butterfly-icon.png",
+  "datePublished": "2025-01-26T15:58:52.169Z",
+  "dateModified": "2025-01-26T16:03:07.119Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "站主",
+      "url": "http://example.com/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2025/01/26/Git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Git学习笔记',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">玉米的学习博客</span></a><a class="nav-page-title" href="/"><span class="site-name">Git学习笔记</span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">Git学习笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-01-26T15:58:52.169Z" title="Created 2025-01-26 23:58:52">2025-01-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-01-26T16:03:07.119Z" title="Updated 2025-01-27 00:03:07">2025-01-27</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="1-基本流程"><a href="#1-基本流程" class="headerlink" title="1. 基本流程"></a>1. 基本流程</br></h2><blockquote>
+<p>git clone address把github上的代码clone到本地文件夹下–&gt;git add .放到暂存区–&gt;git commit -m”备注信息”提交记录–&gt;git push(分支)</p>
+</blockquote>
+<h2 id="2-基本命令"><a href="#2-基本命令" class="headerlink" title="2. 基本命令"></a>2. 基本命令</br></h2><blockquote>
+<p><code>git add files</code> 把当前文件放入暂存区域。</br><br><code>git commit</code> 给暂存区域生成快照并提交。</br><br><code>git reset -- files </code>用来撤销最后一次git add files，你也可以用git reset 撤销所有暂存区域文件。</br><br><code>git checkout -- files</code> 把文件从暂存区域复制到工作目录，用来丢弃本地修改。</p>
+</blockquote>
+<p>可以用 git reset -p, git checkout -p, or git add -p进入交互模式。</p>
+<p>也可以跳过暂存区域直接从仓库取出文件或者直接提交代码。</p>
+<ul>
+<li>git commit -a 相当于运行 git add 把所有当前目录下的文件加入暂存区域再运行。</li>
+<li>git commit files 进行一次包含最后一次提交加上工作目录中文件快照的提交。并且文件被添加到暂存区域。</li>
+<li>git checkout HEAD – files 回滚到复制最后一次提交。</li>
+</ul>
+<h2 id="3-diff、commit、checkout命令"><a href="#3-diff、commit、checkout命令" class="headerlink" title="3. diff、commit、checkout命令"></a>3. diff、commit、checkout命令</br></h2><blockquote>
+<p>查看两次提交之间的变动：<code>git diff file</code><br>git会使用与当前提交相同的父节点进行一次新提交，旧的提交会被取消。<code> git commit --amend</code><br>checkout命令用于从历史提交（或者暂存区域）中拷贝文件到工作目录，也可用于切换分支。<code>git checkout main</code></p>
+</blockquote>
+<h2 id="4-reset、merge命令"><a href="#4-reset、merge命令" class="headerlink" title="4. reset、merge命令"></a>4. reset、merge命令</br></h2><blockquote>
+<p>reset命令把当前分支指向另一个位置，并且有选择的变动工作目录和索引。也用来在从历史仓库中复制文件到索引，而不动工作目录。</p>
+<p>merge 命令把不同分支合并起来。合并前，索引必须和当前提交相同。如果另一个分支是当前提交的祖父节点，那么合并命令将什么也不做。 另一种情况是如果当前提交是另一个分支的祖父节点，就导致fast-forward合并。指向只是简单的移动，并生成一个新的提交。</p>
+</blockquote>
+<h2 id="5-Cherry-Pick、Rebase命令"><a href="#5-Cherry-Pick、Rebase命令" class="headerlink" title="5. Cherry Pick、Rebase命令"></a>5. Cherry Pick、Rebase命令</br></h2><blockquote>
+<p>cherry-pick命令”复制”一个提交节点并在当前分支做一次完全一样的新提交。</br></p>
+</blockquote>
+<blockquote>
+<p>Rebase衍合是合并命令的另一种选择。合并把两个父分支合并进行一次提交，提交历史不是线性的。衍合在当前分支上重演另一个分支的历史，提交历史是线性的。 本质上，这是线性化的自动的 <code>git rebase --interactive</code></p>
+</blockquote>
+<h2 id="6-提交记录"><a href="#6-提交记录" class="headerlink" title="6. 提交记录"></a>6. 提交记录</br></h2><blockquote>
+<p>Git 仓库中的提交记录保存的是你的目录下所有文件的快照，就像是把整个目录复制，然后再粘贴一样，但比复制粘贴优雅许多！</p>
+</blockquote>
+<p>提交记录尽可能地轻量，因此在你每次进行提交时，它并不会盲目地复制整个目录。条件允许的情况下，它会将当前版本与仓库中的上一个版本进行对比，并把所有的差异打包到一起作为一个提交记录。</p>
+<p style="color:blue">
+通过git log查看哈希表
+</p>
+
+<h2 id="7-git-branch"><a href="#7-git-branch" class="headerlink" title="7. git branch"></a>7. git branch</br></h2><blockquote>
+<p>Git 的分支也非常轻量。它们只是简单地指向某个提交纪录 —— 仅此而已。</p>
+<p>这是因为即使创建再多的分支也不会造成储存或内存上的开销，并且按逻辑分解工作到不同的分支要比维护那些特别臃肿的分支简单多了。</p>
+</blockquote>
+<p>在将分支和提交记录结合起来后，我们会看到两者如何协作。现在只要记住使用分支其实就相当于在说：</p>
+<p style="color:red">“我想基于这个提交以及它所有的 parent 提交进行新的工作。”</p>
+
+<p>现在咱们告诉 Git 我们想要切换到新的分支上</p>
+<pre><code>git checkout &lt;name&gt;
+</code></pre>
+<p>接下来的git commit 就会在该分支上进行。</p>
+<h2 id="8-创建分支并切换过去"><a href="#8-创建分支并切换过去" class="headerlink" title="8. 创建分支并切换过去"></a>8. 创建分支并切换过去</br></h2><pre><code>git branch yumi
+git checkout yumi
+</code></pre>
+<p>等价于<br> <code>git checkout -b &lt;yumi&gt;</code></p>
+<h2 id="9-合并分支merge"><a href="#9-合并分支merge" class="headerlink" title="9. 合并分支merge"></a>9. 合并分支merge</br></h2><p>接下来咱们看看如何将两个分支合并到一起。就是说我们新建一个分支，在其上开发某个新功能，开发完成后再合并回主线。</p>
+<p>咱们先来看一下第一种方法 —— git merge。在 Git 中合并两个分支时会产生一个特殊的提交记录，它有两个 parent 节点。翻译成自然语言相当于：</p>
+<p style="color:red">“我要把这两个 parent 节点本身及它们所有的祖先都包含进来。”</p>
+
+
+<h2 id="10-git-rebase合并"><a href="#10-git-rebase合并" class="headerlink" title="10. git rebase合并"></a>10. git rebase合并</br></h2><blockquote>
+<p>Rebase 实际上就是取出一系列的提交记录，“复制”它们，然后在另外一个地方逐个的放下去。</p>
+</blockquote>
+<blockquote>
+<p>Rebase 的优势就是可以创造更线性的提交历史，这听上去有些难以理解。如果只允许使用 Rebase 的话，代码库的提交历史将会变得异常清晰：</p>
+</blockquote>
+<ol>
+<li><blockquote>
+<p><code>git checkout yumi</code>当前节点<br></p>
+</blockquote>
+</li>
+<li><blockquote>
+<p><code>git rebase a</code>将当前节点复制到a节点下面（作为a的子节点）<br></p>
+</blockquote>
+</li>
+<li><blockquote>
+<p><code>git checkout a</code>a节点<br></p>
+</blockquote>
+</li>
+<li><blockquote>
+<p><code>git rebase yumi</code>合并<br></p>
+</blockquote>
+</li>
+</ol>
+<h2 id="11-commit"><a href="#11-commit" class="headerlink" title="11. commit"></a>11. commit</br></h2><p>每提交一次生成一个子节点</p>
+<h2 id="12-在项目的提交树上前后移动的方法。"><a href="#12-在项目的提交树上前后移动的方法。" class="headerlink" title="12. 在项目的提交树上前后移动的方法。"></a>12. 在项目的提交树上前后移动的方法。</br></h2><p>&lt;HEAD的概念： 是一个对当前所在分支的符号引用 —— 也就是指向你正在其基础上进行工作的提交记录。</p>
+<h2 id="13-HEAD的指向怎么查看"><a href="#13-HEAD的指向怎么查看" class="headerlink" title="13. HEAD的指向怎么查看"></a>13. HEAD的指向怎么查看</br></h2><p>&lt;<code>cat .git/HEAD</code><br>&lt; 如果 HEAD 指向的是一个引用，还可以用 <code>git symbolic-ref HEAD </code></p>
+<h2 id="14-分离的HEAD，使其指向提交记录"><a href="#14-分离的HEAD，使其指向提交记录" class="headerlink" title="14. 分离的HEAD，使其指向提交记录"></a>14. 分离的HEAD，使其指向提交记录</br></h2><blockquote>
+<p>分离前（正常情况）:<br><code>HEAD-&gt;main(分支名)-&gt;c1(提交记录)</code><br><br><code>git checkout c1</code>：checkout使其指向记录<br><br><code>HEAD-&gt;c1(提交记录)</code></p>
+</blockquote>
+<h2 id="15-相对引用"><a href="#15-相对引用" class="headerlink" title="15. 相对引用"></a>15. 相对引用</br></h2><blockquote>
+<p>使用 ^ 向上移动 1 个提交记录<br><br><code>git checkout HEAD^</code><br>使用 <del><num> 向上移动多个提交记录，如 ~3<br>提交记录，如 ~3<br><br>&#96;git checkout HEAD</del>3&#96;<br></p>
+</blockquote>
+<p style="color:red">
+1. `branch -f`：移动分支<br>
+2. 将main指向哪个移动分支：<br>
+3. `git branch -f main HEAD^`：将main指向HEAD的父节点<br>
+</p>
+
+
+
+<h2 id="16-reset（本地撤销提交）和revert（远端撤销提交）"><a href="#16-reset（本地撤销提交）和revert（远端撤销提交）" class="headerlink" title="16. reset（本地撤销提交）和revert（远端撤销提交）"></a>16. reset（本地撤销提交）和revert（远端撤销提交）</br></h2><p><strong>注意：都是对HEAD进行操作</strong></p>
+<p>reset:<code>git reset HEAD~2</code><br><br>revert：<code>git revert HEAD</code><br>先checkout到该分支<br></p>
+<h2 id="17-分离的HEAD，使其指向提交记录"><a href="#17-分离的HEAD，使其指向提交记录" class="headerlink" title="17. 分离的HEAD，使其指向提交记录"></a>17. 分离的HEAD，使其指向提交记录</br></h2><blockquote>
+<p>分离前（正常情况）:<br><code>HEAD-&gt;main(分支名)-&gt;c1(提交记录)</code><br><br><code>git checkout c1</code>：checkout使其指向记录<br><br><code>HEAD-&gt;c1(提交记录)</code></p>
+</blockquote>
+<h2 id="18-分离的HEAD，使其指向提交记录"><a href="#18-分离的HEAD，使其指向提交记录" class="headerlink" title="18. 分离的HEAD，使其指向提交记录"></a>18. 分离的HEAD，使其指向提交记录</br></h2><blockquote>
+<p>分离前（正常情况）:<br><code>HEAD-&gt;main(分支名)-&gt;c1(提交记录)</code><br><br><code>git checkout c1</code>：checkout使其指向记录<br><br><code>HEAD-&gt;c1(提交记录)</code></p>
+</blockquote>
+<h2 id="19-git-push"><a href="#19-git-push" class="headerlink" title="19. git push"></a>19. git push</h2><p>git push <remote> <branch> 和 git push origin main 之间的对应关系如下：</p>
+<pre><code>组成部分
+&lt;remote&gt;：
+这是你要推送到的远程仓库的名称。默认情况下，Git 在克隆仓库时会将远程仓库命名为 origin。你也可以添加其他远程仓库，例如 upstream。
+
+&lt;branch&gt;：
+这是你要推送的本地分支的名称。它对应于远程仓库中的分支。
+</code></pre>
+<p>示例解析</p>
+<pre><code>git push origin main：
+</code></pre>
+<p>origin：表示远程仓库的名称，通常是默认配置的远程仓库。<br>main：表示你要推送的本地分支的名称。在这个例子中，推送的是名为 main 的分支。</p>
+<h2 id="20-git-push"><a href="#20-git-push" class="headerlink" title="20. git push"></a>20. git push</h2><p>在 GitHub 上处理别人的库（通常是指开源项目）时，你不能直接推送到他们的主库。相反，通常采用以下步骤：</p>
+<ol>
+<li>Fork（分叉）库<br>Fork 仓库：<br>在 GitHub 上，找到你想要贡献的库，点击右上角的 “Fork” 按钮。这会在你的 GitHub 账户下创建该库的副本。</li>
+<li>Clone（克隆）库<br>克隆你的 Fork：<br>在你的本地机器上，使用克隆命令将你的 Fork 下载到本地：<br>bash</li>
+</ol>
+<p>复制<br>git clone <a target="_blank" rel="noopener" href="https://github.com/%E4%BD%A0%E7%9A%84%E7%94%A8%E6%88%B7%E5%90%8D/%E5%BA%93%E5%90%8D.git">https://github.com/你的用户名/库名.git</a><br>例如：<br>bash</p>
+<p>复制<br>git clone <a target="_blank" rel="noopener" href="https://github.com/yourusername/repo.git">https://github.com/yourusername/repo.git</a><br>3. 创建分支<br>创建新分支：<br>在本地仓库中，为了进行更改，建议你创建一个新分支：<br>bash</p>
+<p>复制<br>git checkout -b feature-branch<br>4. Make Changes（进行更改）<br>进行更改：<br>在新分支上进行更改，完成后使用 git add 和 git commit 提交更改。<br>5. Push Changes（推送更改）<br>推送到你的 Fork：<br>将你在本地的更改推送到你的 GitHub Fork：<br>bash</p>
+<p>复制<br>git push origin feature-branch<br>6. Create a Pull Request（创建拉取请求）<br>创建 Pull Request：<br>登录 GitHub，进入你的 Fork 页面，点击 “Pull Requests” 标签，然后点击 “New Pull Request”。<br>选择你的分支并提交请求，向原始仓库的维护者请求合并你的更改。<br>7. Sync with Original Repository（同步原始仓库）<br>如果原始仓库有更新，你可能需要将这些更新合并到你的 Fork：</p>
+<p>添加原始仓库为远程：<br>bash</p>
+<p>复制<br>git remote add upstream <a target="_blank" rel="noopener" href="https://github.com/%E5%8E%9F%E4%BD%9C%E8%80%85/%E5%BA%93%E5%90%8D.git">https://github.com/原作者/库名.git</a><br>拉取更新：<br>bash</p>
+<p>复制<br>git fetch upstream<br>git checkout main  # 切换到主分支<br>git merge upstream&#x2F;main<br>推送更新到你的 Fork：<br>bash</p>
+<p>复制<br>git push origin main<br>总结<br>你不能直接推送到别人的库，但可以通过 Fork、克隆、创建分支、推送到你的 Fork 并创建 Pull Request 来贡献更改。<br>记得保持你的 Fork 与原始仓库同步，以便于合并最新的更改。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="http://example.com">站主</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="http://example.com/2025/01/26/Git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">http://example.com/2025/01/26/Git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">站主</div><div class="author-info-description">描述</div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">5</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%9F%BA%E6%9C%AC%E6%B5%81%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">1. 基本流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4"><span class="toc-number">2.</span> <span class="toc-text">2. 基本命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-diff%E3%80%81commit%E3%80%81checkout%E5%91%BD%E4%BB%A4"><span class="toc-number">3.</span> <span class="toc-text">3. diff、commit、checkout命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-reset%E3%80%81merge%E5%91%BD%E4%BB%A4"><span class="toc-number">4.</span> <span class="toc-text">4. reset、merge命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Cherry-Pick%E3%80%81Rebase%E5%91%BD%E4%BB%A4"><span class="toc-number">5.</span> <span class="toc-text">5. Cherry Pick、Rebase命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E6%8F%90%E4%BA%A4%E8%AE%B0%E5%BD%95"><span class="toc-number">6.</span> <span class="toc-text">6. 提交记录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-git-branch"><span class="toc-number">7.</span> <span class="toc-text">7. git branch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E5%88%9B%E5%BB%BA%E5%88%86%E6%94%AF%E5%B9%B6%E5%88%87%E6%8D%A2%E8%BF%87%E5%8E%BB"><span class="toc-number">8.</span> <span class="toc-text">8. 创建分支并切换过去</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-%E5%90%88%E5%B9%B6%E5%88%86%E6%94%AFmerge"><span class="toc-number">9.</span> <span class="toc-text">9. 合并分支merge</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-git-rebase%E5%90%88%E5%B9%B6"><span class="toc-number">10.</span> <span class="toc-text">10. git rebase合并</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-commit"><span class="toc-number">11.</span> <span class="toc-text">11. commit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-%E5%9C%A8%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%8F%90%E4%BA%A4%E6%A0%91%E4%B8%8A%E5%89%8D%E5%90%8E%E7%A7%BB%E5%8A%A8%E7%9A%84%E6%96%B9%E6%B3%95%E3%80%82"><span class="toc-number">12.</span> <span class="toc-text">12. 在项目的提交树上前后移动的方法。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-HEAD%E7%9A%84%E6%8C%87%E5%90%91%E6%80%8E%E4%B9%88%E6%9F%A5%E7%9C%8B"><span class="toc-number">13.</span> <span class="toc-text">13. HEAD的指向怎么查看</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-%E5%88%86%E7%A6%BB%E7%9A%84HEAD%EF%BC%8C%E4%BD%BF%E5%85%B6%E6%8C%87%E5%90%91%E6%8F%90%E4%BA%A4%E8%AE%B0%E5%BD%95"><span class="toc-number">14.</span> <span class="toc-text">14. 分离的HEAD，使其指向提交记录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-%E7%9B%B8%E5%AF%B9%E5%BC%95%E7%94%A8"><span class="toc-number">15.</span> <span class="toc-text">15. 相对引用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-reset%EF%BC%88%E6%9C%AC%E5%9C%B0%E6%92%A4%E9%94%80%E6%8F%90%E4%BA%A4%EF%BC%89%E5%92%8Crevert%EF%BC%88%E8%BF%9C%E7%AB%AF%E6%92%A4%E9%94%80%E6%8F%90%E4%BA%A4%EF%BC%89"><span class="toc-number">16.</span> <span class="toc-text">16. reset（本地撤销提交）和revert（远端撤销提交）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-%E5%88%86%E7%A6%BB%E7%9A%84HEAD%EF%BC%8C%E4%BD%BF%E5%85%B6%E6%8C%87%E5%90%91%E6%8F%90%E4%BA%A4%E8%AE%B0%E5%BD%95"><span class="toc-number">17.</span> <span class="toc-text">17. 分离的HEAD，使其指向提交记录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18-%E5%88%86%E7%A6%BB%E7%9A%84HEAD%EF%BC%8C%E4%BD%BF%E5%85%B6%E6%8C%87%E5%90%91%E6%8F%90%E4%BA%A4%E8%AE%B0%E5%BD%95"><span class="toc-number">18.</span> <span class="toc-text">18. 分离的HEAD，使其指向提交记录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#19-git-push"><span class="toc-number">19.</span> <span class="toc-text">19. git push</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#20-git-push"><span class="toc-number">20.</span> <span class="toc-text">20. git push</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/01/26/Git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="Git学习笔记">Git学习笔记</a><time datetime="2025-01-26T15:58:52.169Z" title="Created 2025-01-26 23:58:52">2025-01-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/01/26/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86django/" title="django">django</a><time datetime="2025-01-26T15:58:44.384Z" title="Created 2025-01-26 23:58:44">2025-01-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/01/26/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86vue3/" title="vue学习笔记">vue学习笔记</a><time datetime="2025-01-26T15:58:44.384Z" title="Created 2025-01-26 23:58:44">2025-01-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/01/26/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86/" title="前端学习笔记">前端学习笔记</a><time datetime="2025-01-26T15:58:44.377Z" title="Created 2025-01-26 23:58:44">2025-01-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/01/26/hello-world/" title="Hello World">Hello World</a><time datetime="2025-01-26T15:26:52.230Z" title="Created 2025-01-26 23:26:52">2025-01-26</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By 站主</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
