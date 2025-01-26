@@ -1,0 +1,622 @@
+<!DOCTYPE html><html lang="语言（可以填写zh-CN）" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>玉米的学习博客 | 玉米的学习博客</title><meta name="author" content="站主"><meta name="copyright" content="站主"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前端学习笔记    1. vue项目部署 在域名目录中上传dist,设置好网站目录启动项  2.本地写好的vue项目通过nvm，npm,nodejs生成dist文件的流程 在命令行中使用 cd 命令导航到你的 Vue 项目目录，例如：  &gt;cd &quot;E:\python code\前端\POEMON-BLOG-main\My-Blog-FrontOpen&quot;   确保在项目目录">
+<meta property="og:type" content="article">
+<meta property="og:title" content="玉米的学习博客">
+<meta property="og:url" content="http://example.com/2025/01/26/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86vue3/index.html">
+<meta property="og:site_name" content="玉米的学习博客">
+<meta property="og:description" content="前端学习笔记    1. vue项目部署 在域名目录中上传dist,设置好网站目录启动项  2.本地写好的vue项目通过nvm，npm,nodejs生成dist文件的流程 在命令行中使用 cd 命令导航到你的 Vue 项目目录，例如：  &gt;cd &quot;E:\python code\前端\POEMON-BLOG-main\My-Blog-FrontOpen&quot;   确保在项目目录">
+<meta property="og:locale">
+<meta property="og:image" content="http://example.com/img/butterfly-icon.png">
+<meta property="article:published_time" content="2025-01-26T15:58:44.384Z">
+<meta property="article:modified_time" content="2024-12-29T15:19:05.266Z">
+<meta property="article:author" content="站主">
+<meta property="article:tag" content="关键词">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "url": "http://example.com/2025/01/26/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86vue3/",
+  "image": "http://example.com/img/butterfly-icon.png",
+  "datePublished": "2025-01-26T15:58:44.384Z",
+  "dateModified": "2024-12-29T15:19:05.266Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "站主",
+      "url": "http://example.com/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2025/01/26/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86vue3/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '玉米的学习博客',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">玉米的学习博客</span></a><a class="nav-page-title" href="/"><span class="site-name">玉米的学习博客</span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">Untitled</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-01-26T15:58:44.384Z" title="Created 2025-01-26 23:58:44">2025-01-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2024-12-29T15:19:05.266Z" title="Updated 2024-12-29 23:19:05">2024-12-29</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>前端学习笔记</h1>
+</br> 
+
+<h2 id="1-vue项目部署"><a href="#1-vue项目部署" class="headerlink" title="1. vue项目部署"></a>1. vue项目部署</br></h2><blockquote>
+<p>在域名目录中上传dist,设置好网站目录启动项</p>
+</blockquote>
+<h2 id="2-本地写好的vue项目通过nvm，npm-nodejs生成dist文件的流程"><a href="#2-本地写好的vue项目通过nvm，npm-nodejs生成dist文件的流程" class="headerlink" title="2.本地写好的vue项目通过nvm，npm,nodejs生成dist文件的流程"></a>2.本地写好的vue项目通过nvm，npm,nodejs生成dist文件的流程</br></h2><blockquote>
+<p>在命令行中使用 cd 命令导航到你的 Vue 项目目录，例如：</p>
+</blockquote>
+<pre><code>&gt;cd &quot;E:\python code\前端\POEMON-BLOG-main\My-Blog-FrontOpen&quot;
+</code></pre>
+<blockquote>
+<p>确保在项目目录中执行以下命令，以安装项目所需的依赖：</p>
+</blockquote>
+<pre><code>&gt;npm install
+</code></pre>
+<blockquote>
+<p>现在，你可以运行构建命令来生成 dist 文件夹。通常，这个命令在 package.json 的 scripts 部分中定义，通常是 build。执行以下命令：</p>
+</blockquote>
+<pre><code>&gt;npm run build
+</code></pre>
+<blockquote>
+<h4 id="部署-dist-文件"><a href="#部署-dist-文件" class="headerlink" title="部署 dist 文件"></a>部署 dist 文件</h4><p>接下来，你可以将 dist 文件夹中的内容部署到服务器或静态网站托管服务，如 Netlify、Vercel、GitHub Pages 等。</p>
+</blockquote>
+<h2 id="3-nodejs，npm-nvm的概念"><a href="#3-nodejs，npm-nvm的概念" class="headerlink" title="3. nodejs，npm,nvm的概念"></a>3. nodejs，npm,nvm的概念</br></h2><blockquote>
+<p>Node.js 是服务器端的 JavaScript 运行时环境。<br>npm 是 Node.js 的包管理工具，用于管理依赖和发布包。<br>nvm 是用于管理 Node.js 版本的工具，方便开发者在不同版本之间切换。</p>
+</blockquote>
+<h2 id="4-Webpack概念"><a href="#4-Webpack概念" class="headerlink" title="4. Webpack概念"></a>4. Webpack概念</br></h2><blockquote>
+<p>Webpack 是一个现代 JavaScript 应用程序的静态模块打包工具。它主要用于将复杂的前端应用程序打包成更小的、可管理的文件，从而优化加载性能。旨在解决现代前端开发中的模块化和资源管理问题，使得开发者能够构建高效、可维护的应用程序。</p>
+</blockquote>
+<h2 id="5-特殊函数定义格式"><a href="#5-特殊函数定义格式" class="headerlink" title="5. 特殊函数定义格式"></a>5. 特殊函数定义格式</br></h2><blockquote>
+<p>watch&#x2F;watcheffect&#x2F;computed等(() &#x3D;&gt; {});</p>
+</blockquote>
+<blockquote>
+<p>const 对象名字 &#x3D;computed等(() &#x3D;&gt; {});watch不行</p>
+</blockquote>
+<h2 id="6-正常函数定义格式"><a href="#6-正常函数定义格式" class="headerlink" title="6. 正常函数定义格式"></a>6. 正常函数定义格式</br></h2><blockquote>
+<p>const greet &#x3D; (name) &#x3D;&gt; {<br>   return ‘Hello, ${name}!’;};</p>
+</blockquote>
+<p><strong>greet为方法名，name为传参</strong></p>
+<h2 id="7-“”和-和-怎么用的"><a href="#7-“”和-和-怎么用的" class="headerlink" title="7. “”和&#96;&#96;和$怎么用的"></a>7. “”和&#96;&#96;和$怎么用的</br></h2><pre><code>			&quot;&quot;：用于定义简单字符串。&lt;/br&gt;
+				 ``：用于定义模板字面量，支持多行和插值。&lt;/br&gt;
+			$&#123;&#125;：在模板字面量中使用，用于插入变量或表达式的值。
+			let name = 张三
+			let greeting = `Hello, $&#123;name&#125;!`; // 字符串插值
+
+			
+</code></pre>
+<h2 id="8-CDN（内容分发网络）"><a href="#8-CDN（内容分发网络）" class="headerlink" title="8. CDN（内容分发网络）"></a>8. CDN（内容分发网络）</br></h2><blockquote>
+<p>CDN（内容分发网络）是一种通过全球分布的服务器加速内容传输，提高网站加载速度和可靠性的方法</p>
+</blockquote>
+<p>使用 CDN<br>在网页中使用 CDN 资源非常简单，只需在 HTML 文件中添加相应的链接。例如，要使用 Bootstrap 的 CSS：</p>
+<blockquote>
+<p>link rel&#x3D;”stylesheet” href&#x3D;”<a target="_blank" rel="noopener" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min">https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min</a>“</p>
+</blockquote>
+<p>这段代码会从 Bootstrap 的 CDN 服务器加载 CSS 文件，而不是从您的服务器加载。这样可以提高加载速度，并减轻您服务器的压力。</p>
+<h2 id="9-change"><a href="#9-change" class="headerlink" title="9. @change"></a>9. @change</br></h2><p>事件监听：@change 是 Vue.js 的事件监听指令，表示当复选框的状态发生变化时（即用户勾选或取消勾选复选框）会触发 checkSelect 方法。</br><br>checkSelect 方法：这个方法通常用于处理复选框状态改变后的逻辑，比如更新其他部分的状态或执行某些操作。</p>
+<pre><code>			&lt;input type=&quot;checkbox&quot; v-model=&quot;data.checkboxList&quot; :value=&quot;value&quot; @change=&quot;checkSelect&quot; /&gt;
+</code></pre>
+<h2 id="10-computed的reduce"><a href="#10-computed的reduce" class="headerlink" title="10. computed的reduce"></a>10. computed的reduce</h2><p>累加器</p>
+<h2 id="11-基于Vite创建Vue3项目"><a href="#11-基于Vite创建Vue3项目" class="headerlink" title="11.基于Vite创建Vue3项目"></a>11.基于Vite创建Vue3项目</h2><pre><code>			npm create vite@latest
+
+
+
+           Ok to proceed? (y) » y
+
+           Project name: » demo
+
+           Select a framework: » Vue
+
+           Select a variant: » JavaScript
+
+
+
+           Done. Now run:
+
+                   cd demo
+
+                   npm install
+
+   npm run dev
+</code></pre>
+<h2 id="12-父传子"><a href="#12-父传子" class="headerlink" title="12. 父传子"></a>12. 父传子</h2><pre><code>	父传递方式
+	&lt;!-- 父传子 - 方式1 --&gt;属性
+		 &lt;Header propsName=&quot;邓瑞编程&quot; propsUrl=&quot;dengruicode.com&quot; /&gt;
+		dengruicode.com
+		&lt;button @click=&quot;userAdd&quot;&gt;添加用户&lt;/button&gt;
+
+		 &lt;!-- 父传子 - 方式2 --&gt;v-bind（：）
+		&lt;Footer :=&quot;propsWeb&quot; /&gt;
+
+
+	子接收方式
+	&lt;方式1 --&gt;数组
+		 const props = defineProps([&quot;propsName&quot;,&quot;propsUrl&quot;])&lt;br&gt;
+
+		 &lt;方式2 --&gt;对象
+	const props = defineProps(&#123;
+    user: Number,
+    ip: &#123;
+        type: String,
+        required: true, //true表示必传属性,若未传则会提示警告信息
+        default: &#39;localhost&#39; //未传默认值
+    &#125;
+&#125;)
+</code></pre>
+<h2 id="13-子传父"><a href="#13-子传父" class="headerlink" title="13. 子传父"></a>13. 子传父</h2><pre><code>	子传递方式
+	//子组件
+
+	/*defineEmits是Vue3的编译时宏函数,用于子组件向父组件发送自定义事件*/
+	//子传父
+	//定义一个名为 emits 的对象, 用于存储自定义事件，通过emits对象传递数据
+	const emits = defineEmits([&quot;web&quot;,&quot;user&quot;])
+	//发送名为 web 和 user 的自定义事件
+	emits(&quot;web&quot;, &#123;name:&quot;邓瑞&quot;,url:&quot;www.dengruicode.com&quot;&#125;)
+
+	//添加用户
+	const userAdd = () =&gt; &#123;
+    //发送名为 user 的自定义事件
+    emits(&quot;user&quot;, 10)
+	&#125;
+
+
+	父接收方式
+	
+		&lt;Header @web=&quot;emitsWeb&quot; @user=&quot;emitsUser&quot; /&gt;
+		  const emitsWeb = (data) =&gt; &#123;
+	console.log(&quot;emitsWeb:&quot;,data)
+	web.url = data.url&#125;
+
+		const emitsUser = (data) =&gt; &#123;
+	console.log(&quot;emitsUser:&quot;,data)
+	user.value += data&#125;
+</code></pre>
+<p>总结：子组件在setup中定义对象emits存储列表事件，const emits &#x3D; defineEmits([“web”,”user”])，再通过emits发送事件emits(“web”, {name:”邓瑞”,url:”<a target="_blank" rel="noopener" href="http://www.dengruicode.com"})/emits">www.dengruicode.com&quot;})/emits</a>(“user”, 10)<br>父组件在template中通过@接收并重命名方法emitsWeb&lt;Header @web&#x3D;”emitsWeb” @user&#x3D;”emitsUser” &#x2F;&gt;，在setup中定义方法</p>
+<h2 id="14-provide和inject，依赖注入实现父传给任何一个子组件"><a href="#14-provide和inject，依赖注入实现父传给任何一个子组件" class="headerlink" title="14.provide和inject，依赖注入实现父传给任何一个子组件"></a>14.provide和inject，依赖注入实现父传给任何一个子组件</h2><p>累加器</p>
+<h2 id="15-生命周期函数"><a href="#15-生命周期函数" class="headerlink" title="15.生命周期函数"></a>15.生命周期函数</h2><pre><code>   组件实例从创建到销毁过程中不同时间点自动调用的函数
+</code></pre>
+<p>(1)挂载阶段</p>
+<pre><code>   onBeforeMount
+
+           在组件实例即将被挂载到DOM树之前调用
+
+           此时模板还未编译或渲染到DOM,通常用于执行初始化操作,
+
+           如:获取异步数据、设置初始属性值等
+
+   onMounted
+
+           在组件成功挂载到DOM并完成首次渲染后调用
+
+           此时可以访问和操作DOM元素,
+
+           并执行与页面交互相关的逻辑
+</code></pre>
+<p>(2)更新阶段</p>
+<pre><code>   onBeforeUpdate (由于响应式数据变化)
+
+           在组件更新之前即将重新渲染时调用
+
+           可以根据新的参数判断是否需要进行特殊处理,
+
+           甚至可以选择阻止此次更新过程
+
+   onUpdated
+
+           在组件完成更新并重新渲染后调用
+
+           可以基于新的渲染结果处理更新后的数据
+</code></pre>
+<p>(3)卸载阶段</p>
+<pre><code>   onBeforeUnmount
+
+           在组件从DOM中销毁之前调用
+
+           用于释放资源,如:清理计时器、解绑事件监听器等
+
+   onUnmounted
+
+           在组件已经从DOM中移除并销毁后调用
+
+           确保组件所占用的所有资源都被正确释放
+</code></pre>
+<p>(4)错误处理</p>
+<pre><code>   onErrorCaptured
+
+           在捕获到组件中的错误时调用
+
+           用于处理错误,如:记录错误日志等
+</code></pre>
+<p>总结：组件挂载的过程</p>
+<p>模板编译</p>
+<pre><code>   将组件的模板转换为JS代码
+</code></pre>
+<p>渲染</p>
+<pre><code>   在模板编译后生成的JS代码渲染到页面上,
+
+   生成虚拟DOM
+</code></pre>
+<p>挂载</p>
+<pre><code>   在渲染完成后将虚拟DOM挂载到真实的DOM树上,
+
+   使其在页面上显示出来
+
+
+	
+</code></pre>
+<h2 id="16-toRef和toRefs"><a href="#16-toRef和toRefs" class="headerlink" title="16.toRef和toRefs"></a>16.toRef和toRefs</h2><pre><code>	let web = reactive(&#123;
+		name:&quot;邓瑞编程&quot;,
+		url:&quot;dengruicode.com&quot;&#125;)
+</code></pre>
+<p>toRef将一个响应式对象的某个属性转换为ref变量：</p>
+<pre><code>	let url = toRef(web, &quot;url&quot;)
+</code></pre>
+<p>toRefs将一个响应式对象的所有属性转换为ref对象：</p>
+<pre><code>    let &#123;name,url&#125; = toRefs(web)
+</code></pre>
+<h2 id="17-pinia使用"><a href="#17-pinia使用" class="headerlink" title="17.pinia使用"></a>17.pinia使用</h2><p>导入createPinia（main.js）</p>
+<pre><code>	//导入Pinia的createPinia方法,用于创建Pinia实例(状态管理库)
+	import &#123; createPinia &#125; from &#39;pinia&#39;
+
+	//创建一个Pinia实例,用于在应用中集中管理状态(store)
+	const pinia = createPinia()
+	
+	app.use(pinia) //将Pinia实例注册到Vue应用中
+</code></pre>
+<p>定义一个基于 Pinia 的 Store（web.js）</p>
+<pre><code>	import &#123; defineStore &#125; from &#39;pinia&#39;
+
+	/*
+	  定义一个基于 Pinia 的 Store
+	  第1个参数 web 是 useWebStore 在应用中的唯一标识符(ID)
+		其中约定俗成命名格式为usexxxStore
+	  第2个参数是 Setup函数 或 Option对象
+	*/export导出组件
+	export const useWebStore = defineStore(&#39;web&#39;, () =&gt; &#123;
+	  //定义一个响应式对象web，存储网站信息
+	  const web = reactive(&#123;
+	    title: &quot;邓瑞编程&quot;,
+	    url: &quot;dengruicode.com&quot;
+	  &#125;)
+	
+	  //定义一个响应式引用，存储用户数
+	  const users = ref(1000)
+	  
+	  //定义方法
+	  const userAdd = () =&gt; &#123;
+	    users.value++
+	  &#125;
+	
+	  return &#123;
+	    web,
+	    users,
+	    userAdd
+	  &#125;
+	&#125;)
+</code></pre>
+<p>使用&#x2F;导入useWebStore组件（App.vue或者其他.vue文件？）</p>
+<pre><code>/import &#123; useWebStore &#125; from &#39;./stores/web.js&#39;
+
+const webStore = useWebStore()
+</code></pre>
+<h2 id="18-pinia插件persistedstate持久化存储使用"><a href="#18-pinia插件persistedstate持久化存储使用" class="headerlink" title="18.pinia插件persistedstate持久化存储使用"></a>18.pinia插件persistedstate持久化存储使用</h2><p>问：pinia持久化插件也是存储到localStorage中,为什么不直接使用localStorage?<br><br>（1）自动状态同步</p>
+<pre><code>   持久化插件自动将Pinia的状态存储到localStorage中,
+
+   无需手动处理状态的读取和写入
+</code></pre>
+<p>（2）易用性</p>
+<pre><code>   无需手动处理localStorage的键值对存储、数据转换等繁琐过程
+</code></pre>
+<p>（3）与Vue组件状态紧密集成</p>
+<pre><code>   持久化插件与Vue组件的响应式数据完美结合
+
+   当状态改变时,依赖这些状态的组件会自动更新视图
+
+   与仅仅从localStorage中读取静态数据相比更加灵活和强大
+</code></pre>
+<p>main.js</p>
+<pre><code>	//导入Pinia的createPinia方法,用于创建Pinia实例(状态管理库)
+	import &#123; createPinia &#125; from &#39;pinia&#39;
+	//从 pinia-plugin-persistedstate 模块中导入 piniaPluginPersistedstate
+	import piniaPluginPersistedstate from &#39;pinia-plugin-persistedstate&#39;
+
+	import App from &#39;./App.vue&#39;
+
+	//创建一个Pinia实例,用于在应用中集中管理状态(store)
+	const pinia = createPinia()
+
+	//将插件添加到 pinia 实例上
+	pinia.use(piniaPluginPersistedstate)
+	
+	//createApp(App).mount(&#39;#app&#39;)
+	const app = createApp(App)
+	app.use(pinia) //将Pinia实例注册到Vue应用中
+	app.mount(&#39;#app&#39;)
+</code></pre>
+<p>web.js</p>
+<pre><code>	import &#123; reactive, ref &#125; from &#39;vue&#39;
+	import &#123; defineStore &#125; from &#39;pinia&#39;
+	
+	/*
+	  定义一个基于 Pinia 的 Store
+	  第1个参数 web 是 useWebStore 在应用中的唯一标识符(ID)
+	  第2个参数是 Setup函数 或 Option对象
+	*/
+	export const useWebStore = defineStore(&#39;web&#39;, () =&gt; &#123;
+	  //定义一个响应式对象，存储网站信息
+	  const web = reactive(&#123;
+	    title: &quot;邓瑞编程&quot;,
+	    url: &quot;dengruicode.com&quot;
+	  &#125;)
+	
+	  //定义一个响应式引用，存储用户数
+	  const users = ref(1000)
+	  
+	  //定义方法
+	  const userAdd = () =&gt; &#123;
+	    users.value++
+	  &#125;
+	
+	  return &#123;
+	    web,
+	    users,
+	    userAdd
+	  &#125;
+	&#125;,
+	&#123;
+	  //持久化存储到 localStorage 中
+	  persist: true
+	&#125;)
+</code></pre>
+<h2 id="19-pinia和piniaPluginPersistedstate使用总结"><a href="#19-pinia和piniaPluginPersistedstate使用总结" class="headerlink" title="19.pinia和piniaPluginPersistedstate使用总结"></a>19.pinia和piniaPluginPersistedstate使用总结</h2><p>Pinia 的使用流程可以概括为：<br></p>
+<ul>
+<li>在 main.js 中创建 Pinia 实例并挂载到 Vue 应用。</li>
+<li>在一个单独的文件中使用 defineStore 创建存储对象。</li>
+<li>在组件中调用和使用这个存储对象。</li>
+</ul>
+<p>（首先在main.js中导入Pinia的createPinia方法,用于创建Pinia实例(状态管理库)–&gt;在web.js中使用defineStore创建存储的对象和内容–&gt;在app.vue中调用所创建的对象）</p>
+<pre><code>	import &#123; createPinia &#125; from &#39;pinia&#39;
+    const pinia = createPinia()
+    app.use(pinia) //将Pinia实例注册到Vue应用中
+
+	web.js:export const usewebstore=defineStore(&#39;自定义唯一标识符id&#39;，setup函数（）=&gt;&#123;&#125;)
+	app.vue:const a=usewebstore()
+</code></pre>
+<p>pinia-plugin-persistedstate 的基本流程可以概括为：</p>
+<ul>
+<li><p>在 main.js 中引入并注册插件。</p>
+</li>
+<li><p>在定义存储时配置持久化选项。</p>
+</li>
+<li><p>在组件中使用存储，状态将自动持久化。</p>
+<pre><code>  //main.js
+  import piniaPluginPersistedstate from &#39;pinia-plugin-persistedstate&#39;
+  pinia.use(piniaPluginPersistedstate)
+
+    //web.js持久化存储到 localStorage 中
+    persist: true
+</code></pre>
+</li>
+</ul>
+<h2 id="19-App-vue-是-Vue-应用的根组件，主要负责以下几个方面："><a href="#19-App-vue-是-Vue-应用的根组件，主要负责以下几个方面：" class="headerlink" title="19.App.vue 是 Vue 应用的根组件，主要负责以下几个方面："></a>19.App.vue 是 Vue 应用的根组件，主要负责以下几个方面：</h2><ol>
+<li><p>根组件<br>App.vue 是整个 Vue 应用的入口组件，它是所有其他组件的父组件。所有子组件都将嵌套在这个组件中。</p>
+</li>
+<li><p>结构和布局<br>在 App.vue 中，你可以定义应用的基本结构和布局，例如导航栏、侧边栏、底部信息等。这些内容通常在所有页面中共享。</p>
+</li>
+<li><p>路由视图<br>如果使用了 Vue Router，App.vue 通常包含一个 <router-view> 组件，用于渲染匹配的子路由组件。这使得应用能够根据路由动态加载不同的视图。</p>
+</li>
+<li><p>状态管理<br>在 App.vue 中，可以使用状态管理工具（如 Pinia 或 Vuex）来管理全局状态，并将其传递给子组件。</p>
+</li>
+</ol>
+<h2 id="20-main-js-是-Vue-应用的入口文件，主要负责以下几个关键任务："><a href="#20-main-js-是-Vue-应用的入口文件，主要负责以下几个关键任务：" class="headerlink" title="20.main.js 是 Vue 应用的入口文件，主要负责以下几个关键任务："></a>20.main.js 是 Vue 应用的入口文件，主要负责以下几个关键任务：</h2><p>main.js 是 Vue 应用的入口文件，主要负责以下几个关键任务：</p>
+<ol>
+<li><p>创建 Vue 应用实例<br>main.js 中使用 createApp 函数创建一个 Vue 应用实例。这是应用的起点，所有的配置和组件都会从这里开始。</p>
+</li>
+<li><p>注册全局组件和插件<br>在 main.js 中，你可以注册全局的组件、指令或插件。这些组件和功能可以在应用的任何地方使用。例如，使用 Vue Router 或 Pinia 时，会在这里进行配置和注册。</p>
+</li>
+<li><p>配置状态管理<br>如果使用了状态管理工具（如 Pinia 或 Vuex），在 main.js 中通常会创建相应的实例并将其注册到应用中。</p>
+</li>
+<li><p>挂载组件<br>最后，main.js 中会将创建的 Vue 应用实例挂载到一个 DOM 元素上，通常是 index.html 文件中的一个 div，例如 #app。</p>
+<pre><code> // main.js
+ import &#123; createApp &#125; from &#39;vue&#39;;
+ import App from &#39;./App.vue&#39;; // 导入根组件
+ import &#123; createPinia &#125; from &#39;pinia&#39;; // 导入 Pinia 插件
+ 
+ const app = createApp(App); // 创建 Vue 应用实例
+ const pinia = createPinia(); // 创建 Pinia 实例
+ 
+ app.use(pinia); // 注册 Pinia 插件
+ app.mount(&#39;#app&#39;); // 挂载应用到 DOM
+</code></pre>
+</li>
+</ol>
+<h2 id="21-app-mount-‘-app’"><a href="#21-app-mount-‘-app’" class="headerlink" title="21.app.mount(‘#app’);"></a>21.app.mount(‘#app’);</h2><p>app.mount(‘#app’); 是 Vue 3 中用于挂载 Vue 应用的命令。这行代码的含义和作用如下：</p>
+<p>含义<br>挂载：将 Vue 应用实例与 DOM 中的某个元素关联起来，使得 Vue 能够在该元素内渲染组件和内容。<br>作用<br>选择器：’#app’ 是一个 CSS 选择器，表示要挂载的 DOM 元素的 ID。在 HTML 文件中，通常会有一个 <div id="app"></div> 作为 Vue 应用的挂载点。<br>启动渲染：调用 mount 方法后，Vue 将开始渲染根组件（通常是 App.vue）及其子组件，并将生成的内容插入到指定的 DOM 元素中。<br>响应式更新：一旦挂载，Vue 会开始管理该 DOM 元素内的内容，并根据数据的变化自动更新视图。<br>示例<br>假设你的 index.html 文件中有以下代码：</p>
+<p>html<br>复制<br><!DOCTYPE html></p>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue App</title>
+</head>
+<body>
+    <div id="app"></div> <!-- 挂载点 -->
+    <script src="main.js"></script>
+</body>
+</html>
+html 2
+
+
+<p>在 main.js 中的代码：</p>
+<p>javascript<br>复制<br>const app &#x3D; createApp(App);<br>app.mount(‘#app’); &#x2F;&#x2F; 将 Vue 应用挂载到 id 为 app 的元素上<br>总结<br>app.mount(‘#app’); 是将 Vue 应用实例挂载到 DOM 元素的一种方式，使得 Vue 可以控制该元素的内容，进行渲染和更新。这是启动 Vue 应用的关键步骤。</p>
+<h2 id="22-vue-router"><a href="#22-vue-router" class="headerlink" title="22.vue-router"></a>22.vue-router</h2><h2 id="23-vue2中的选项式API和vue3组合式API的区别"><a href="#23-vue2中的选项式API和vue3组合式API的区别" class="headerlink" title="23.vue2中的选项式API和vue3组合式API的区别"></a>23.vue2中的选项式API和vue3组合式API的区别</h2><p>data() 方法<br>用途：用于定义组件的响应式数据。<br>返回值：返回一个对象，包含组件的状态或属性。<br>特点：<br>该对象中的属性可以在模板中使用，并且当这些属性的值改变时，视图会自动更新。<br>data() 是一个函数，因为它可以在每次组件实例化时返回一个新的对象，从而确保每个组件实例都有自己的数据副本。<br>methods 中的方法<br>用途：用于定义组件内可调用的函数或逻辑。<br>特点：<br>方法可以被模板中的事件（如点击）调用，或者在其他方法中引用。<br>在方法中，可以通过 this 访问组件的 data、computed 属性以及其他方法。<br>方法通常用于处理用户交互、执行逻辑计算或更新数据等。</p>
+<h3 id="（1）-组织方式"><a href="#（1）-组织方式" class="headerlink" title="（1） 组织方式"></a>（1） 组织方式</h3><h4 id="a-选项式-API（Vue-2）："><a href="#a-选项式-API（Vue-2）：" class="headerlink" title="a.选项式 API（Vue 2）："></a>a.选项式 API（Vue 2）：</h4><p>通过将组件的不同部分（如 data、methods、computed、watch 等）分开组织在一个对象中来定义组件。<br>这种方式在小型组件中非常直观，但在大型组件中可能会导致逻辑分散，难以管理。</p>
+<pre><code>	export default &#123;
+	  data() &#123;
+	    return &#123;
+	      message: &#39;Hello, Vue!&#39;,
+	    &#125;;
+	  &#125;,
+	  methods: &#123;
+	    greet() &#123;
+	      alert(this.message);
+	    &#125;,
+	  &#125;,
+	  computed: &#123;
+	    reversedMessage() &#123;
+	      return this.message.split(&#39;&#39;).reverse().join(&#39;&#39;);
+	    &#125;,
+	  &#125;,
+	&#125;;
+</code></pre>
+<h4 id="b-组合式-API（Vue-3）："><a href="#b-组合式-API（Vue-3）：" class="headerlink" title="b.组合式 API（Vue 3）："></a>b.组合式 API（Vue 3）：</h4><p>使用 setup() 函数来组织组件逻辑，使得功能更容易组合和复用。可以在 setup() 中定义响应式状态、方法和计算属性。<br>这种方式使得逻辑更加集中，适合复杂组件和大型应用。</p>
+<pre><code>	import &#123; ref, computed &#125; from &#39;vue&#39;;
+	
+	export default &#123;
+	  setup() &#123;
+	    const message = ref(&#39;Hello, Vue!&#39;);
+	    
+	    const greet = () =&gt; &#123;
+	      alert(message.value);
+	    &#125;;
+	
+	    const reversedMessage = computed(() =&gt; &#123;
+	      return message.value.split(&#39;&#39;).reverse().join(&#39;&#39;);
+	    &#125;);
+	
+	    return &#123; message, greet, reversedMessage &#125;;
+	  &#125;,
+	&#125;;
+</code></pre>
+<h3 id="（2）响应式系统"><a href="#（2）响应式系统" class="headerlink" title="（2）响应式系统"></a>（2）响应式系统</h3><h4 id="a-选项式-API："><a href="#a-选项式-API：" class="headerlink" title="a.选项式 API："></a>a.选项式 API：</h4><p>数据是通过 data() 方法定义的。Vue 会自动将返回的对象转换为响应式。</p>
+<h4 id="b-组合式-API："><a href="#b-组合式-API：" class="headerlink" title="b.组合式 API："></a>b.组合式 API：</h4><p>使用 ref 或 reactive 创建响应式数据。ref 用于基本数据类型，而 reactive 用于对象。</p>
+<h3 id="（3）逻辑复用"><a href="#（3）逻辑复用" class="headerlink" title="（3）逻辑复用"></a>（3）逻辑复用</h3><h4 id="a-选项式-API：-1"><a href="#a-选项式-API：-1" class="headerlink" title="a.选项式 API："></a>a.选项式 API：</h4><p>逻辑复用通常依赖于 mixins 和继承，可能导致命名冲突和复杂性。</p>
+<h4 id="b-组合式-API：-1"><a href="#b-组合式-API：-1" class="headerlink" title="b.组合式 API："></a>b.组合式 API：</h4><p>通过组合函数（Composition Functions）实现逻辑复用，更加灵活和清晰。可以将相关逻辑封装成单独的函数，便于在多个组件中复用。</p>
+<h3 id="（4）类型支持"><a href="#（4）类型支持" class="headerlink" title="（4）类型支持"></a>（4）类型支持</h3><h4 id="a-选项式-API：-2"><a href="#a-选项式-API：-2" class="headerlink" title="a.选项式 API："></a>a.选项式 API：</h4><p>对 TypeScript 的支持较弱，类型推导不够灵活。</p>
+<h4 id="b-组合式-API：-2"><a href="#b-组合式-API：-2" class="headerlink" title="b.组合式 API："></a>b.组合式 API：</h4><p>提供更好的 TypeScript 支持，类型推导更为强大和灵活，适合大型项目。</p>
+<h3 id="（5）生命周期钩子"><a href="#（5）生命周期钩子" class="headerlink" title="（5）生命周期钩子"></a>（5）生命周期钩子</h3><h4 id="a-选项式-API：-3"><a href="#a-选项式-API：-3" class="headerlink" title="a.选项式 API："></a>a.选项式 API：</h4><p>生命周期钩子是组件选项的一部分，如 mounted()、created() 等。</p>
+<h4 id="b-组合式-API：-3"><a href="#b-组合式-API：-3" class="headerlink" title="b.组合式 API："></a>b.组合式 API：</h4><p>在 setup() 中使用生命周期钩子函数，如 onMounted、onCreated 等，使得钩子与相关逻辑更紧密地结合。</p>
+<p>总结<br>选项式 API：适合小型项目，简单易懂，但在大型应用中可能变得难以管理。<br>组合式 API：适合复杂和大型应用，提供更好的逻辑组织和复用能力，更强的 TypeScript 支持。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="http://example.com">站主</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="http://example.com/2025/01/26/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86vue3/">http://example.com/2025/01/26/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86vue3/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">站主</div><div class="author-info-description">描述</div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">7</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">前端学习笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-vue%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2"><span class="toc-number">1.1.</span> <span class="toc-text">1. vue项目部署</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%9C%AC%E5%9C%B0%E5%86%99%E5%A5%BD%E7%9A%84vue%E9%A1%B9%E7%9B%AE%E9%80%9A%E8%BF%87nvm%EF%BC%8Cnpm-nodejs%E7%94%9F%E6%88%90dist%E6%96%87%E4%BB%B6%E7%9A%84%E6%B5%81%E7%A8%8B"><span class="toc-number">1.2.</span> <span class="toc-text">2.本地写好的vue项目通过nvm，npm,nodejs生成dist文件的流程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2-dist-%E6%96%87%E4%BB%B6"><span class="toc-number">1.2.0.1.</span> <span class="toc-text">部署 dist 文件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-nodejs%EF%BC%8Cnpm-nvm%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-number">1.3.</span> <span class="toc-text">3. nodejs，npm,nvm的概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Webpack%E6%A6%82%E5%BF%B5"><span class="toc-number">1.4.</span> <span class="toc-text">4. Webpack概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E7%89%B9%E6%AE%8A%E5%87%BD%E6%95%B0%E5%AE%9A%E4%B9%89%E6%A0%BC%E5%BC%8F"><span class="toc-number">1.5.</span> <span class="toc-text">5. 特殊函数定义格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E6%AD%A3%E5%B8%B8%E5%87%BD%E6%95%B0%E5%AE%9A%E4%B9%89%E6%A0%BC%E5%BC%8F"><span class="toc-number">1.6.</span> <span class="toc-text">6. 正常函数定义格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E2%80%9C%E2%80%9D%E5%92%8C-%E5%92%8C-%E6%80%8E%E4%B9%88%E7%94%A8%E7%9A%84"><span class="toc-number">1.7.</span> <span class="toc-text">7. “”和&#96;&#96;和$怎么用的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-CDN%EF%BC%88%E5%86%85%E5%AE%B9%E5%88%86%E5%8F%91%E7%BD%91%E7%BB%9C%EF%BC%89"><span class="toc-number">1.8.</span> <span class="toc-text">8. CDN（内容分发网络）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-change"><span class="toc-number">1.9.</span> <span class="toc-text">9. @change</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-computed%E7%9A%84reduce"><span class="toc-number">1.10.</span> <span class="toc-text">10. computed的reduce</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-%E5%9F%BA%E4%BA%8EVite%E5%88%9B%E5%BB%BAVue3%E9%A1%B9%E7%9B%AE"><span class="toc-number">1.11.</span> <span class="toc-text">11.基于Vite创建Vue3项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-%E7%88%B6%E4%BC%A0%E5%AD%90"><span class="toc-number">1.12.</span> <span class="toc-text">12. 父传子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-%E5%AD%90%E4%BC%A0%E7%88%B6"><span class="toc-number">1.13.</span> <span class="toc-text">13. 子传父</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-provide%E5%92%8Cinject%EF%BC%8C%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E5%AE%9E%E7%8E%B0%E7%88%B6%E4%BC%A0%E7%BB%99%E4%BB%BB%E4%BD%95%E4%B8%80%E4%B8%AA%E5%AD%90%E7%BB%84%E4%BB%B6"><span class="toc-number">1.14.</span> <span class="toc-text">14.provide和inject，依赖注入实现父传给任何一个子组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%87%BD%E6%95%B0"><span class="toc-number">1.15.</span> <span class="toc-text">15.生命周期函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-toRef%E5%92%8CtoRefs"><span class="toc-number">1.16.</span> <span class="toc-text">16.toRef和toRefs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-pinia%E4%BD%BF%E7%94%A8"><span class="toc-number">1.17.</span> <span class="toc-text">17.pinia使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18-pinia%E6%8F%92%E4%BB%B6persistedstate%E6%8C%81%E4%B9%85%E5%8C%96%E5%AD%98%E5%82%A8%E4%BD%BF%E7%94%A8"><span class="toc-number">1.18.</span> <span class="toc-text">18.pinia插件persistedstate持久化存储使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#19-pinia%E5%92%8CpiniaPluginPersistedstate%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93"><span class="toc-number">1.19.</span> <span class="toc-text">19.pinia和piniaPluginPersistedstate使用总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#19-App-vue-%E6%98%AF-Vue-%E5%BA%94%E7%94%A8%E7%9A%84%E6%A0%B9%E7%BB%84%E4%BB%B6%EF%BC%8C%E4%B8%BB%E8%A6%81%E8%B4%9F%E8%B4%A3%E4%BB%A5%E4%B8%8B%E5%87%A0%E4%B8%AA%E6%96%B9%E9%9D%A2%EF%BC%9A"><span class="toc-number">1.20.</span> <span class="toc-text">19.App.vue 是 Vue 应用的根组件，主要负责以下几个方面：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#20-main-js-%E6%98%AF-Vue-%E5%BA%94%E7%94%A8%E7%9A%84%E5%85%A5%E5%8F%A3%E6%96%87%E4%BB%B6%EF%BC%8C%E4%B8%BB%E8%A6%81%E8%B4%9F%E8%B4%A3%E4%BB%A5%E4%B8%8B%E5%87%A0%E4%B8%AA%E5%85%B3%E9%94%AE%E4%BB%BB%E5%8A%A1%EF%BC%9A"><span class="toc-number">1.21.</span> <span class="toc-text">20.main.js 是 Vue 应用的入口文件，主要负责以下几个关键任务：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#21-app-mount-%E2%80%98-app%E2%80%99"><span class="toc-number">1.22.</span> <span class="toc-text">21.app.mount(‘#app’);</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#22-vue-router"><span class="toc-number">1.23.</span> <span class="toc-text">22.vue-router</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#23-vue2%E4%B8%AD%E7%9A%84%E9%80%89%E9%A1%B9%E5%BC%8FAPI%E5%92%8Cvue3%E7%BB%84%E5%90%88%E5%BC%8FAPI%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.24.</span> <span class="toc-text">23.vue2中的选项式API和vue3组合式API的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89-%E7%BB%84%E7%BB%87%E6%96%B9%E5%BC%8F"><span class="toc-number">1.24.1.</span> <span class="toc-text">（1） 组织方式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#a-%E9%80%89%E9%A1%B9%E5%BC%8F-API%EF%BC%88Vue-2%EF%BC%89%EF%BC%9A"><span class="toc-number">1.24.1.1.</span> <span class="toc-text">a.选项式 API（Vue 2）：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#b-%E7%BB%84%E5%90%88%E5%BC%8F-API%EF%BC%88Vue-3%EF%BC%89%EF%BC%9A"><span class="toc-number">1.24.1.2.</span> <span class="toc-text">b.组合式 API（Vue 3）：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E5%93%8D%E5%BA%94%E5%BC%8F%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.24.2.</span> <span class="toc-text">（2）响应式系统</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#a-%E9%80%89%E9%A1%B9%E5%BC%8F-API%EF%BC%9A"><span class="toc-number">1.24.2.1.</span> <span class="toc-text">a.选项式 API：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#b-%E7%BB%84%E5%90%88%E5%BC%8F-API%EF%BC%9A"><span class="toc-number">1.24.2.2.</span> <span class="toc-text">b.组合式 API：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89%E9%80%BB%E8%BE%91%E5%A4%8D%E7%94%A8"><span class="toc-number">1.24.3.</span> <span class="toc-text">（3）逻辑复用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#a-%E9%80%89%E9%A1%B9%E5%BC%8F-API%EF%BC%9A-1"><span class="toc-number">1.24.3.1.</span> <span class="toc-text">a.选项式 API：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#b-%E7%BB%84%E5%90%88%E5%BC%8F-API%EF%BC%9A-1"><span class="toc-number">1.24.3.2.</span> <span class="toc-text">b.组合式 API：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%884%EF%BC%89%E7%B1%BB%E5%9E%8B%E6%94%AF%E6%8C%81"><span class="toc-number">1.24.4.</span> <span class="toc-text">（4）类型支持</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#a-%E9%80%89%E9%A1%B9%E5%BC%8F-API%EF%BC%9A-2"><span class="toc-number">1.24.4.1.</span> <span class="toc-text">a.选项式 API：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#b-%E7%BB%84%E5%90%88%E5%BC%8F-API%EF%BC%9A-2"><span class="toc-number">1.24.4.2.</span> <span class="toc-text">b.组合式 API：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%885%EF%BC%89%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90"><span class="toc-number">1.24.5.</span> <span class="toc-text">（5）生命周期钩子</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#a-%E9%80%89%E9%A1%B9%E5%BC%8F-API%EF%BC%9A-3"><span class="toc-number">1.24.5.1.</span> <span class="toc-text">a.选项式 API：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#b-%E7%BB%84%E5%90%88%E5%BC%8F-API%EF%BC%9A-3"><span class="toc-number">1.24.5.2.</span> <span class="toc-text">b.组合式 API：</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/01/26/Git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="Untitled">Untitled</a><time datetime="2025-01-26T15:58:52.169Z" title="Created 2025-01-26 23:58:52">2025-01-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/01/26/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86django/" title="Untitled">Untitled</a><time datetime="2025-01-26T15:58:44.384Z" title="Created 2025-01-26 23:58:44">2025-01-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/01/26/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86vue3/" title="Untitled">Untitled</a><time datetime="2025-01-26T15:58:44.384Z" title="Created 2025-01-26 23:58:44">2025-01-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/01/26/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86/" title="Untitled">Untitled</a><time datetime="2025-01-26T15:58:44.377Z" title="Created 2025-01-26 23:58:44">2025-01-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/01/26/3/" title="Hello Worldsda">Hello Worldsda</a><time datetime="2025-01-26T15:52:13.364Z" title="Created 2025-01-26 23:52:13">2025-01-26</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By 站主</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
